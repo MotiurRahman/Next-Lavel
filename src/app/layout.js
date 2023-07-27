@@ -1,7 +1,9 @@
 import Navbar from "@/components/shared/Navbar";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/shared/Footer";
+import Provider from "./Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +16,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="cupcake">
       <body className={inter.className}>
-        <Navbar></Navbar>
-        <div className="min-h-screen text-4xl">{children}</div>
-        <Footer></Footer>
+        <Provider>
+          <Navbar></Navbar>
+          <div className="min-h-screen">{children}</div>
+          <Footer></Footer>
+        </Provider>
       </body>
     </html>
   );
